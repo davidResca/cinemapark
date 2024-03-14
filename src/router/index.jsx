@@ -7,7 +7,9 @@ import NotFound404 from "../pages/NotFound404";
 
 import LayoutPublic from "../layout/LayoutPublic";
 import SeatSelection from "../pages/SeatSelection";
-
+import MovieDetail from "../pages/MovieDetail";
+import { loaderMovie } from "../pages/MovieDetail";
+import { loaderMovies } from "../components/Movies";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -17,10 +19,20 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+        loader: loaderMovies,
+      },
+      {
+        path: "/movies/:id",
+        element: <MovieDetail />,
+        loader: loaderMovie,
+      },
+      {
+        path: "/seatselect/:id",
+        element: <SeatSelection/>
       },
       {
         path: "/candybar",
-        element: <CandyBar />,
+        element: <CandyBar/>
       },
       {
         path: "/payment",
@@ -31,10 +43,5 @@ export const router = createBrowserRouter([
         element: <UserProfile />,
       },
     ],
-  },
-  {
-    path: "/seatselection",
-    element: <SeatSelection />,
-    errorElement: <NotFound404 />,
   },
 ]);
